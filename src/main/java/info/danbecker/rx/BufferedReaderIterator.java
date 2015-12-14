@@ -25,6 +25,10 @@ public class BufferedReaderIterator implements Iterable<String> {
 		this.reader = new BufferedReader( new FileReader( f ));
 	}	
 	
+	public BufferedReaderIterator( String filePath ) throws FileNotFoundException {
+		this.reader = new BufferedReader( new FileReader( new File( filePath  )));
+	}	
+	
 	@Override
 	public Iterator<String> iterator() {
 		return new Iterator<String>() {
