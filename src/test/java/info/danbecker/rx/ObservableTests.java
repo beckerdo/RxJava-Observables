@@ -59,17 +59,17 @@ public class ObservableTests {
     @Mock
     Observer<Integer> w;
 
+    @Before
+    public void before() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     private static final Func1<Integer, Boolean> IS_EVEN = new Func1<Integer, Boolean>() {
         @Override
         public Boolean call(Integer value) {
             return value % 2 == 0;
         }
     };
-
-    @Before
-    public void before() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     public void fromArray() {
