@@ -3,21 +3,22 @@ package info.danbecker.rx;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 
+import rx.Observable;
+import rx.Observer;
+import rx.subjects.PublishSubject;
+
 import org.junit.Test;
 import org.junit.Before;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-//import org.mockito.Mockito;
-//import static org.mockito.Mockito.mock;
-//import static org.mockito.Matchers.any;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Matchers.any;
 //import static org.mockito.Mockito.inOrder;
 //import static org.mockito.Mockito.never;
-//import static org.mockito.Mockito.times;
-//import static org.mockito.Mockito.verify;
-
-import rx.Observable;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class BufferedReaderIteratorTest {
 	@Before
@@ -52,32 +53,32 @@ public class BufferedReaderIteratorTest {
 		}
 	}
 	
-//	@Test
-//	public void testPublishSubjectCompleted() {
-//		PublishSubject<String> subject = PublishSubject.create();
-//
-//		@SuppressWarnings("unchecked")
-//		Observer<String> observer = mock(Observer.class);
-//		subject.subscribe(observer);
-//
-//		subject.onNext("one");
-//		subject.onNext("two");
-//		subject.onNext("three");
-//		subject.onCompleted();
-//
-//		@SuppressWarnings("unchecked")
-//		Observer<String> anotherObserver = mock(Observer.class);
-//		subject.subscribe(anotherObserver);
-//
-//		subject.onNext("four");
-//		subject.onCompleted();
-//		subject.onError(new Throwable());
-//
-//		// Assert counts
-//		verify(observer, times(1)).onNext("one");
-//		verify(observer, times(1)).onNext("two");
-//		verify(observer, times(1)).onNext("three");
-//		verify(observer, Mockito.never()).onError(any(Throwable.class));
-//		verify(observer, times(1)).onCompleted();
-//	}
+	@Test
+	public void testPublishSubjectCompleted() {
+		PublishSubject<String> subject = PublishSubject.create();
+
+		@SuppressWarnings("unchecked")
+		Observer<String> observer = mock(Observer.class);
+		subject.subscribe(observer);
+
+		subject.onNext("one");
+		subject.onNext("two");
+		subject.onNext("three");
+		subject.onCompleted();
+
+		@SuppressWarnings("unchecked")
+		Observer<String> anotherObserver = mock(Observer.class);
+		subject.subscribe(anotherObserver);
+
+		subject.onNext("four");
+		subject.onCompleted();
+		subject.onError(new Throwable());
+
+		// Assert counts
+		verify(observer, times(1)).onNext("one");
+		verify(observer, times(1)).onNext("two");
+		verify(observer, times(1)).onNext("three");
+		verify(observer, Mockito.never()).onError(any(Throwable.class));
+		verify(observer, times(1)).onCompleted();
+	}
 }
